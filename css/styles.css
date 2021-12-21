@@ -12,7 +12,6 @@
     max-width: 1000px;
 }
 header {
-    /* padding: 2rem; */
     display: flex;
     justify-content: space-between;
     margin: 4rem auto 1rem;
@@ -20,6 +19,7 @@ header {
 }
 h1 {
     margin: 0;
+    font-weight: 600;
 }
 .search {
     padding: 0 .5rem;
@@ -66,7 +66,7 @@ p {
 }
 .name {
     font-size: large;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 /* Overlay styling */
