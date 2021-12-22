@@ -9,13 +9,13 @@
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 1rem;
     margin: 0 auto;
-    max-width: 1000px;
+    max-width: 1100px;
 }
 header {
     display: flex;
     justify-content: space-between;
     margin: 4rem auto 1rem;
-    max-width: 1000px;
+    max-width: 1100px;
 }
 h1 {
     margin: 0;
@@ -25,7 +25,7 @@ h1 {
     padding: 0 .5rem;
     border-radius: 5px;
     border: 1px solid rgb(223, 223, 223);
-    width: 322px;
+    width: 200px;
     height: 32px;
     align-self: flex-end;
     align-content: center;
@@ -34,7 +34,7 @@ h1 {
 .card {
     display: grid;
     align-items: center;
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 35% 65%;
     border: 2px solid rgb(223, 223, 223);
     border-radius: 5px;
     transition: .3s;
