@@ -114,7 +114,7 @@ searchbar.addEventListener('input', () => {
     const names = document.getElementsByClassName("name");
     const cards = document.getElementsByClassName("card");
 
-    for (i = 0; i < names.length; i++) {
+    for (i = 0; i < cards.length; i++) {
         const name = names[i].textContent.toUpperCase();
         const card = cards[i];
 
