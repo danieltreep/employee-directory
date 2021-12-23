@@ -46,32 +46,30 @@ function displayMembers(employeeData) {
 function displayModal(index) {
     let modalHTML = '';
 
-    for (i = index; i < index + 1; i++) {
-        let employee = employees[index];
-        let name = `${employee.name.first} ${employee.name.last}`;
-        let email = employee.email;
-        let city = employee.location.city;
-        let picture = employee.picture.large;
-        let phone = employee.phone;
-        let street =  employee.location.street.name;
-        let number = employee.location.street.number;
-        let state = employee.location.state;
-        let postcode = employee.location.postcode;
-        let date = new Date(employee.dob.date);
+    let employee = employees[index];
+    let name = `${employee.name.first} ${employee.name.last}`;
+    let email = employee.email;
+    let city = employee.location.city;
+    let picture = employee.picture.large;
+    let phone = employee.phone;
+    let street =  employee.location.street.name;
+    let number = employee.location.street.number;
+    let state = employee.location.state;
+    let postcode = employee.location.postcode;
+    let date = new Date(employee.dob.date);
 
-        modalHTML = `
-            <img class="avatar" src="${picture}" />
-            <div class="text-container">
-                <h2 class="name">${name}</h2>
-                <p class="email">${email}</p>
-                <p class="address">${city}</p>
-                <hr />
-                <p>${phone}</p>
-                <p class="address">${number} ${street}, ${state} ${postcode}</p>
-                <p>Birthday: ${date.getMonth()}/${date.getDate()}/${date.getFullYear()}</p>
-            </div>
-        `;
-    }
+    modalHTML = `
+        <img class="avatar" src="${picture}" />
+        <div class="text-container">
+            <h2 class="name">${name}</h2>
+            <p class="email">${email}</p>
+            <p class="address">${city}</p>
+            <hr />
+            <p>${phone}</p>
+            <p class="address">${number} ${street}, ${state} ${postcode}</p>
+            <p>Birthday: ${date.getMonth()}/${date.getDate()}/${date.getFullYear()}</p>
+        </div>
+    `;
     
     overlay.classList.remove("hidden");
     modalContainer.innerHTML = modalHTML;
