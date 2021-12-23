@@ -5,13 +5,15 @@ const grid = document.querySelector(".grid-container");
 const overlay = document.querySelector(".overlay");
 const modalContainer = document.querySelector(".modal-content");
 const modalClose = document.querySelector(".modal-close");
+const searchbar = document.querySelector(".search");
+const modal = document.querySelector(".modal");
 
 // Fetch API
 fetch(url)
     .then(response => response.json())
     .then(response => response.results)
     .then(displayMembers)
-    .catch(err => console.log(err));
+    .catch(error => console.log(error));
 
 // Function that displays members from response
 function displayMembers(employeeData) {
@@ -26,7 +28,7 @@ function displayMembers(employeeData) {
         let picture = employee.picture.large;
         
         employeeHTML += `
-            <div class="card" data-index="${index}">
+            <div class="card" data-index="${index}" title="Click for more information">
                 <img class="image" src="${picture}" alt="Profile picture">
                 <div class="text-container">
                     <h2 class="name">${name}</h2>
@@ -40,19 +42,22 @@ function displayMembers(employeeData) {
     });
 };
 
+// Display the overlay
 function displayModal(index) {
     let modalHTML = '';
 
-    for (i = index; i < index + 1; i ++) {
-        let name = `${employees[index].name.first} ${employees[index].name.last}`;
-        let email = employees[index].email;
-        let city = employees[index].location.city;
-        let picture = employees[index].picture.large;
-        let phone = employees[index].phone;
-        let street =  employees[index].location.street.name;
-        let number = employees[index].location.street.number;
-        let state = employees[index].location.state;
-        let postcode = employees[index].location.postcode;
+    for (i = index; i < index + 1; i++) {
+        let employee = employees[index];
+        let name = `${employee.name.first} ${employee.name.last}`;
+        let email = employee.email;
+        let city = employee.location.city;
+        let picture = employee.picture.large;
+        let phone = employee.phone;
+        let street =  employee.location.street.name;
+        let number = employee.location.street.number;
+        let state = employee.location.state;
+        let postcode = employee.location.postcode;
+        let date = new Date(employee.dob.date);
 
         modalHTML = `
             <img class="avatar" src="${picture}" />
@@ -63,15 +68,36 @@ function displayModal(index) {
                 <hr />
                 <p>${phone}</p>
                 <p class="address">${number} ${street}, ${state} ${postcode}</p>
-                <p>Birthday: Moet nog</p>
+                <p>Birthday: ${date.getMonth()}/${date.getDate()}/${date.getFullYear()}</p>
             </div>
         `;
     }
     
     overlay.classList.remove("hidden");
     modalContainer.innerHTML = modalHTML;
+
+    // Add data index to modal for switch
+    const indexAtt = document.createAttribute("DATA-MODALINDEX");
+    indexAtt.value = index;
+    modal.setAttributeNode(indexAtt);
 };
 
+// Function to switch between modals
+document.addEventListener('keydown', event => {
+    let index = modal.getAttribute('data-index');
+
+    // Increase or decrease index passed to displayModal
+    if (event.key === "ArrowRight" && overlay.className === "overlay" && index < 11) {
+        index++;
+        displayModal(index);
+        
+    } else if (event.key === "ArrowLeft" && overlay.className === "overlay" && index > 0) {
+        index--;
+        displayModal(index);
+    }
+});
+
+// Display the card to modal when clicked
 grid.addEventListener('click', e => {
     if (e.target !== grid) {
         const card = e.target.closest(".card");
@@ -79,4 +105,26 @@ grid.addEventListener('click', e => {
         displayModal(index);
     }
 });
-    
+
+// Hide modal when the X is clicked
+modalClose.addEventListener('click', () => {
+    overlay.classList.add("hidden");
+});
+
+// Filter by name
+searchbar.addEventListener('input', () => {
+    const names = document.getElementsByClassName("name");
+    const cards = document.getElementsByClassName("card");
+
+    for (i = 0; i < names.length; i++) {
+        const name = names[i].textContent.toUpperCase();
+        const card = cards[i];
+
+        if (name.includes(searchbar.value.toUpperCase())) {
+            card.classList.remove("hidden");
+        } else {
+            card.classList.add("hidden");
+            console.log(card.classList);
+        };
+    }
+});

@@ -14,7 +14,8 @@
 header {
     display: flex;
     justify-content: space-between;
-    margin: 4rem auto 1rem;
+    padding: 4rem 0 0;
+    margin: 0 auto 1rem;
     max-width: 1100px;
 }
 h1 {
@@ -80,7 +81,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(65, 65, 65, 0.466);
+    background: rgba(0, 0, 0, 0.466);
 }
 .modal {
     width: 325px;
