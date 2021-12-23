@@ -84,7 +84,7 @@ function displayModal(index) {
 
 // Function to switch between modals
 document.addEventListener('keydown', event => {
-    let index = modal.getAttribute('data-index');
+    let index = modal.getAttribute('data-modalindex');
 
     // Increase or decrease index passed to displayModal
     if (event.key === "ArrowRight" && overlay.className === "overlay" && index < 11) {
@@ -124,7 +124,6 @@ searchbar.addEventListener('input', () => {
             card.classList.remove("hidden");
         } else {
             card.classList.add("hidden");
-            console.log(card.classList);
         };
     }
 });

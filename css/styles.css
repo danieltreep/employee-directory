@@ -81,7 +81,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.466);
+    background: rgba(0, 0, 0, 0.493);
 }
 .modal {
     width: 325px;
@@ -112,6 +112,19 @@ body {
 hr {
     margin: 1rem 0;
     border-top: 1px solid rgb(218, 218, 218);
+}
+.switch {
+    position: relative;
+    margin: 1% auto auto;
+    background: #fff;
+    border-radius: 5px;
+    padding: .5rem 0;
+    width: 250px;
+    text-align: center;
+}
+.arrow {
+    color: red;
+    padding: 0 1rem;
 }
 .hidden {
     display: none;
